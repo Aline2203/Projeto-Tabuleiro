@@ -2,7 +2,9 @@ package entidades;
 
 import entidades.pecas.CasaBloqueada;
 import entidades.pecas.CasaValida;
+import entidades.pecas.FabricaPecas;
 import entidades.pecas.Peca;
+import entidades.pecas.Pedra;
 import excecoes.TamanhoInvalido;
 
 public class Tabuleiro {
@@ -13,6 +15,7 @@ public class Tabuleiro {
 		if (tamanhoVetor % 2 == 0 && tamanhoVetor > 5) {
 			tabu = new Peca[tamanhoVetor][tamanhoVetor];
 			configurarTabuleiro();
+			preecherTabuleiro();
 			imprimirTabuleiro();
 		} else {
 			System.out.println("Numero Invalido");
@@ -20,7 +23,7 @@ public class Tabuleiro {
 	}
 
 	public void imprimirTabuleiro() {
-	
+
 		char coluna = 'A';
 		System.out.print("	");
 		for (int i = 0; i < tabu.length; i++) {
@@ -38,15 +41,15 @@ public class Tabuleiro {
 
 	}
 
-	public void configurarTabuleiro() {
+	private void configurarTabuleiro() {
 		for (int i = 0; i < tabu.length; i++) {
 			if (i % 2 == 0) {
 				for (int j = 0; j < tabu[i].length; j++) {
 
 					if (j % 2 == 1) {
-						tabu[i][j] = new CasaValida();
+						tabu[i][j] = new CasaValida("");
 					} else {
-						tabu[i][j] = new CasaBloqueada();
+						tabu[i][j] = new CasaBloqueada("");
 					}
 
 				}
@@ -54,13 +57,73 @@ public class Tabuleiro {
 			} else {
 				for (int j = 0; j < tabu[i].length; j++) {
 					if (j % 2 == 0) {
-						tabu[i][j] = new CasaValida();
+						tabu[i][j] = new CasaValida("");
 					} else {
-						tabu[i][j] = new CasaBloqueada();
+						tabu[i][j] = new CasaBloqueada("");
 					}
 				}
 			}
+		}
+	}
 
+	private void preecherTabuleiro() {
+		preecherTabuleiroPecasBrancas();
+		preecherTabuleiroPecasPretas();
+	}
+
+	private void preecherTabuleiroPecasBrancas() {
+		for (int i = 0; i < tabu.length; i++) {
+			if (i < (tabu.length / 2) - 1) {
+				if (i % 2 == 0) {
+					for (int j = 0; j < tabu[i].length; j++) {
+
+						if (j % 2 == 1) {
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "B");
+						} else {
+							
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "B");
+						}
+
+					}
+
+				} else {
+					for (int j = 0; j < tabu[i].length; j++) {
+						if (j % 2 == 0) {
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "B");
+						} else {
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "B");
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void preecherTabuleiroPecasPretas() {
+		for (int i = 0; i < tabu.length; i++) {
+			if (i > tabu.length / 2) {
+				if (i % 2 == 0) {
+					for (int j = 0; j < tabu[i].length; j++) {
+
+						if (j % 2 == 1) {
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "P");
+						} else {
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "P");
+						}
+
+					}
+
+				} else {
+					for (int j = 0; j < tabu[i].length; j++) {
+						if (j % 2 == 0) {
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "P");
+						} else {
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "P");
+						}
+					}
+				}
+
+			}
 		}
 	}
 
@@ -70,7 +133,7 @@ public class Tabuleiro {
 
 	public static void main(String[] args) {
 		try {
-			new Tabuleiro(12);
+			new Tabuleiro(8);
 		} catch (TamanhoInvalido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

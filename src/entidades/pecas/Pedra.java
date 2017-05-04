@@ -1,6 +1,10 @@
 package entidades.pecas;
 
-public class Pedra {
+public class Pedra extends Peca{
+
+	public Pedra(String cor) {
+		super(cor);
+	}
 	
 			
 

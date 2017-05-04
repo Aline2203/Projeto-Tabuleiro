@@ -2,9 +2,10 @@ package entidades.pecas;
 
 public class CasaBloqueada extends Peca{
 	
-	public String getCor(){
-		return "X";
+	public CasaBloqueada(String cor) {
+		super(".");
 	}
+
 	
 	public int getPosicaoXC(){
 		return 0;

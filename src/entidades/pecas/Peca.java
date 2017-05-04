@@ -9,6 +9,10 @@ public abstract class Peca {
 
 //	posiçãoYL - a posição da linha
 	private int posiçãoYL = 0;
+	
+	public Peca(String cor){
+		setCor(cor);
+	}
 
 	public String getCor() {
 		return cor;
