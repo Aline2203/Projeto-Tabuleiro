@@ -58,6 +58,9 @@ public class MovimentoSimples implements Regras{
 			throw new CasaInvalidaExcetion("Erro na posição da pedra");
 		}
 	}
+	/**
+	 * 
+	 */
 	public void pularCasa(){
 		
 	}
