@@ -1,5 +1,7 @@
 package entidades.pecas;
 
+import excecoes.DamaException;
+
 public abstract class FabricaPecas {
 
 	public static Peca criarPeca(String peca,String cor){
