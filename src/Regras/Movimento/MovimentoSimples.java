@@ -59,7 +59,7 @@ public class MovimentoSimples implements Regras{
 		}
 	}
 	/**
-	 * 
+	 * jposmbldfnbeioa
 	 */
 	public void pularCasa(){
 		
