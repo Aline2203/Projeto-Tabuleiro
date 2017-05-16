@@ -1,0 +1,83 @@
+#User Story 07 - Finalizacao de partida
+
+zerarJogo
+
+criarTabuleiro idTabuleiro="TB-01" dimensao=8
+
+iniciarPartida id="PT-01" idTabuleiro="TB-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+ativarPosicionamentoManual
+
+posicionarPeca cor=2 linha=6 coluna="e"
+
+posicionarPeca cor=1 linha=5 coluna="d"
+
+setVez jogador=1
+
+#Jogador 1 vence
+movimentoJogador numeroJogador=1 linhaOrigem=5 colunaOrigem="d" linhaDestino=7 colunaDestino="f"
+
+expect "Pedro" getVencedorPartida id="PT-01"
+
+iniciarPartida id="PT-02" jogador1="Christina" jogador2="Samara" jogadorPedraBranca=1 regraMovimento="regraMovimento1" 	permiteSopro="false"
+
+ativarPosicionamentoManual
+
+posicionarPeca cor=2 linha=3 coluna="d"
+
+posicionarPeca cor=1 linha=2 coluna="e"
+
+setVez jogador=2
+
+#Jogador 2 vence
+movimentoJogador numeroJogador=2 linhaOrigem=3 colunaOrigem="d" linhaDestino=1 colunaDestino="f"
+
+expect "Samara" getVencedorPartida id="PT-02"
+
+#Jogador come as duas unicas pecas do adversario
+
+criarTabuleiro dimensao=8
+
+iniciarPartida id="PT-03" jogador1="Alberto" jogador2="Thiago" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+ativarPosicionamentoManual
+
+posicionarPeca cor=2 linha=6 coluna="a"
+
+posicionarPeca cor=1 linha=5 coluna="b"
+
+posicionarPeca cor=1 linha=3 coluna="d"
+
+setVez jogador=2
+
+#Jogador 2 vence
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="a" linhaDestino=4 colunaDestino="c"
+
+movimentoJogador numeroJogador=2 linhaOrigem=4 colunaOrigem="c" linhaDestino=2 colunaDestino="e"
+
+expect "Thiago" getVencedorPartida id="PT-03"
+
+criarTabuleiro dimensao=8
+
+iniciarPartida id="PT-04" jogador1="Nathan" jogador2="Melissa" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+ativarPosicionamentoManual
+
+posicionarPeca cor=1 linha=3 coluna="h"
+
+posicionarPeca cor=2 linha=4 coluna="g"
+
+posicionarPeca cor=2 linha=6 coluna="e"
+
+setVez jogador=2
+
+#Jogador 1 vence
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="h" linhaDestino=5 colunaDestino="f"
+
+movimentoJogador numeroJogador=1 linhaOrigem=5 colunaOrigem="f" linhaDestino=7 colunaDestino="d"
+
+expect "Nathan" getVencedorPartida id="PT-04"
+
+zerarJogo
+
+quit

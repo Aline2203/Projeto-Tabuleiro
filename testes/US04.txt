@@ -1,0 +1,139 @@
+#User Story - 04: Regras de Captura e Sopro
+
+zerarJogo
+
+criarTabuleiro idTabuleiro="TB-01" dimensao=8
+
+#Nao permite sopro
+iniciarPartida id="PT-01" idTabuleiro="TB-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="b" linhaDestino=4 colunaDestino="c"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="e" linhaDestino=5 colunaDestino="f"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="h" linhaDestino=4 colunaDestino="g"
+
+#jogador 2 comete sopro
+expectError "A regra de sopro definida nao permite soprar" movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="a" linhaDestino=5 colunaDestino="b"
+#Continua sendo a vez do jogador 2
+
+movimentoJogador numeroJogador=2 linhaOrigem=5 colunaOrigem="f" linhaDestino=3 colunaDestino="h"
+#Depois da linha acima, o jogador 2 capturou uma peca do jogador 1. Ela nao deve mais estar disponivel
+
+expect "false" isOcupada linha=4 coluna="g"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="d" linhaDestino=4 colunaDestino="e"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="g" linhaDestino=5 colunaDestino="f"
+
+#jogador 1 comete sopro
+expectError "A regra de sopro definida nao permite soprar" movimentoJogador numeroJogador=1 linhaOrigem=4 colunaOrigem="c" linhaDestino=5 colunaDestino="d"
+#Continua sendo a vez do jogador 1
+
+movimentoJogador numeroJogador=1 linhaOrigem=4 colunaOrigem="e" linhaDestino=6 colunaDestino="g"
+#Depois da linha acima, o jogador 1 capturou uma peca do jogador 2. Ela nao deve estar mais disponivel
+
+expect "false" isOcupada linha=5 coluna="f"
+
+#mais uma captura
+movimentoJogador numeroJogador=2 linhaOrigem=7 colunaOrigem="f" linhaDestino=5 colunaDestino="h"
+
+expect "false" isOcupada linha=6 coluna="g"
+
+movimentoJogador numeroJogador=1 linhaOrigem=2 colunaOrigem="c" linhaDestino=3 colunaDestino="d"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="a" linhaDestino"e" colunaDestino="b"
+
+#mais uma captura
+movimentoJogador numeroJogador=1 linhaOrigem"e" colunaOrigem="c" linhaDestino=8 colunaDestino="a"
+
+expect "false" isOcupada linha=6 coluna="b"
+
+encerrarPartidaSemSalvar
+
+iniciarPartida id="PT-01" idTabuleiro="TB-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="d" linhaDestino=4 colunaDestino="e"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="c" linhaDestino=5 colunaDestino="b"
+
+movimentoJogador numeroJogador=1 linhaOrigem=2 colunaOrigem="c" linhaDestino=3 colunaDestino="d"
+
+movimentoJogador numeroJogador=2 linhaOrigem=7 colunaOrigem="d" linhaDestino=6 colunaDestino="c"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="f" linhaDestino=4 colunaDestino="g"
+
+movimentoJogador numeroJogador=2 linhaOrigem=5 colunaOrigem="b" linhaDestino=4 colunaDestino="c"
+
+#Nesse momento, o jogador 1 (pedras brancas) pode comer duas pecas do jogador 2. Ele deve realizar duas jogadas seguidas.
+#Podem tambem haver situacoes onde tres, quatro, e mais pedras podem ser comidas em uma unica jogada.
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="d" linhaDestino=5 colunaDestino="b"
+
+movimentoJogador numeroJogador=1 linhaOrigem=5 colunaOrigem="b" linhaDestino=7 colunaDestino="d"
+
+movimentoJogador numeroJogador=2 linhaOrigem=8 colunaOrigem="e" linhaDestino=6 colunaDestino="c"
+
+movimentoJogador numeroJogador=1 linhaOrigem=2 colunaOrigem="e" linhaDestino=3 colunaDestino="d"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="c" linhaDestino=5 colunaDestino="b"
+
+movimentoJogador numeroJogador=1 linhaOrigem=1 colunaOrigem="f" linhaDestino=2 colunaDestino="e"
+
+movimentoJogador numeroJogador=2 linhaOrigem=7 colunaOrigem="b" linhaDestino=6 colunaDestino="c"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="d" linhaDestino=4 colunaDestino="c"
+
+#Agora, a situacao se inverte: o jogador 2 (pecas pretas) pode comer duas pecas do jogador 1. Ele deve realizar duas jogadas seguidas.
+movimentoJogador numeroJogador=2 linhaOrigem=5 colunaOrigem="b" linhaDestino=3 colunaDestino="d"
+
+movimentoJogador numeroJogador=2 linhaOrigem=3 colunaOrigem="d" linhaDestino=1 colunaDestino="f"
+
+encerrarPartidaSemSalvar
+
+#Permite sopro. Jogador que soprar perde a partida
+iniciarPartida id="PT-01" idTabuleiro="TB-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="true"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="b" linhaDestino=4 colunaDestino="c"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="e" linhaDestino=5 colunaDestino="f"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="h" linhaDestino=4 colunaDestino="g"
+
+#jogador 2 comete sopro
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="a" linhaDestino=5 colunaDestino="b"
+
+#partida foi encerrada e jogador1 ganhou
+expect "Pedro" getVencedorPartida id="PT-01"
+
+descartarPartida id="PT-01"
+
+iniciarPartida id="PT-01" idTabuleiro="TB-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="true"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="b" linhaDestino=4 colunaDestino="c"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="e" linhaDestino=5 colunaDestino="f"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="h" linhaDestino=4 colunaDestino="g"
+
+movimentoJogador numeroJogador=2 linhaOrigem=5 colunaOrigem="f" linhaDestino=3 colunaDestino="h"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="d" linhaDestino=4 colunaDestino="e"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="g" linhaDestino=5 colunaDestino="f"
+
+#partida foi encerrada e jogador 2 ganhou
+
+movimentoJogador numeroJogador=1 linhaOrigem=4 colunaOrigem="c" linhaDestino=5 colunaDestino="d"
+
+expect "Maria" getVencedorPartida id="PT-01"
+
+zerarJogo
+
+quit
+
+
+
+
+
+
+

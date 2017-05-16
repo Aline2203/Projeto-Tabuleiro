@@ -1,0 +1,40 @@
+#User Story 03 - Regras de movimentacao
+
+zerarJogo
+
+#Movimentacoes validas
+
+criarTabuleiro idTabuleiro="TB-01" dimensao=8
+
+iniciarPartida id="PT-01" idTabuleiro="TB-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="b" linhaDestino=4 colunaDestino="c"
+
+movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="e" linhaDestino=5 colunaDestino="f"
+
+#Momvimentacoes invalidas (em caso de erro, o jogador nao conclui a jogada e ainda fica sendo a vez dele)
+
+expectError "Casa ocupada" movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="d" linhaDestino=4 colunaDestino="c"
+
+expectError "Casas subsequentes nao podem ser ocupadas" movimentoJogador numeroJogador=1 linhaOrigem=4 colunaOrigem="b" linhaDestino=4 colunaDestino="c"
+
+expectError "A casa de origem esta vazia" movimentoJogador numeroJogador=1 linhaOrigem=2 colunaOrigem="a" linhaDestino=7 colunaDestino="c"
+
+expectError "A casa de destino nao existe neste tabuleiro" movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="h" linhaDestino=4 colunaDestino=9
+
+expectError "Jogador, ainda nao e sua vez" movimentoJogador numeroJogador=2 linhaOrigem=6 colunaOrigem="a" linhaDestino=5 colunaDestino="b"
+
+expectError "A peca pertence ao adversario" movimentoJogador numeroJogador=1 linhaOrigem=6 colunaOrigem="a" linhaDestino=5 colunaDestino="b"
+
+encerrarPartidaSemSalvar
+
+iniciarPartida id="PT-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+expectError "Voce nao pode se mover por mais de uma casa vazia" movimentoJogador numeroJogador=1 linhaOrigem=3 colunaOrigem="d" linhaDestino=6 colunaDestino="f"
+
+encerrarPartidaSemSalvar
+
+zerarJogo
+
+quit
+

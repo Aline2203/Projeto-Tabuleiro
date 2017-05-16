@@ -1,0 +1,66 @@
+#User Story 02 - Iniciar Partida
+
+#Iniciar partidas validas
+#Atributos: Nomes dos jogadores e numero do jogador que comeca a partida (fica com as pedras brancas)
+
+#regras de movimentacao:
+#regraMovimento1 = so anda para frente
+#regraMovimento2 = anda para frente e para tras
+
+#regras de sopro:
+#regraSopro1 = pode haver sopro (jogador perde a partida, nesse caso)
+#regraSopro2 = jogo nao permite sopro (emite erro)
+
+zerarJogo
+
+criarTabuleiro tamanho=8
+
+iniciarPartida id="p01" jogador1="Pedro" jogador2="Maria" regraMovimento="regraMovimento1" sopro="false"
+
+#este metodo encerra a partida sem salvar a instancia (equivalente a sair do jogo, exibir o dialogo de salvamento e o jogador selecionar nao)
+encerrarPartidaSemSalvar
+
+iniciarPartida id="p01" jogador1="Marcelo" jogador2="Augusto Cesar" regraMovimento="regraMovimento1" sopro="false"
+
+encerrarPartidaSemSalvar
+
+
+#Partidas invalidas:
+#Jogadores sem nome
+
+expectError "Nome do jogador deve ser definido" iniciarPartida jogador1= jogador2="Carlos" regraMovimento="regraMovimento1" sopro="false"
+
+expectError "Nome do jogador deve ser definido" iniciarPartida jogador1="Paulo" jogador2= regraMovimento="regraMovimento1" sopro="false"
+
+#Comecar o jogo sem regra de movimentacao
+
+expectError "regra de movimentacao nao definida" iniciarPartida jogador1="Solange" jogador1="Sheila" regraMovimento= sopro="false"
+
+#regraMovimento de movimentacao invalida
+expectError "regra de movimentacao invalida" iniciarPartida jogador1="Solange" jogador1="Sheila" regraMovimento="regraMovimento4" sopro="false"
+
+expectError "regra de movimentacao invalida" iniciarPartida jogador1="Solange" jogador1="Sheila" regraMovimento="" sopro="false"
+
+#regra de sopro invalida
+expectError "regra de sopro invalida" iniciarPartida jogador1="Solange" jogador1="Sheila" regraMovimento="regraMovimento2" sopro=""
+
+expectError "regra de sopro invalida" iniciarPartida jogador1="Solange" jogador1="Sheila" regraMovimento="regraMovimento2" sopro=
+
+#Posicionamento de pedras
+
+#ao criar tabuleiro, o mesmo ja deve estar com as pecas posicionadas
+criarTabuleiro tamanho=8
+
+expect "true" isOcupada linha="a" coluna=1
+
+expect "false" isOcupada linha="a" coluna=2
+
+expect "true" isOcupada linha="h" coluna=8
+
+expect "false" isOcupada linha"h" coluna=7
+
+encerrarPartidaSemSalvar
+
+zerarJogo
+
+quit

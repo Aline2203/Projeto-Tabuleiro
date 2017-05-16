@@ -1,0 +1,95 @@
+#User Story 06 - Transformacao em Dama
+zerarJogo
+
+criarTabuleiro idTabuleiro="TB-01" dimensao=8
+
+iniciarPartida id="PT-01" idTabuleiro="TB-01" jogador1="Pedro" jogador2="Maria" jogadorPedraBranca=1 regraMovimento="regraMovimento1" permiteSopro="false"
+
+#Uma vez chamado, este metodo limpa todas as pecas do tabuleiro
+ativarPosicionamentoManual
+
+#metodo de posicionamento de pecas no tabuleiro (para testes)
+#cores: 1- Branca, 2 - Preta
+
+#damas brancas
+posicionarPeca cor=1 linha=8 coluna="a"
+
+posicionarPeca cor=1 linha=8 coluna="c"
+
+posicionarPeca cor=1 linha=8 coluna="e"
+
+posicionarPeca cor=1 linha=8 coluna="g"
+
+#pedras comuns - brancas
+posicionarPeca cor=1 linha=2 coluna="a"
+
+posicionarPeca cor=1 linha=2 coluna="c"
+
+posicionarPeca cor=1 linha=2 coluna="e"
+
+posicionarPeca cor=1 linha=2 coluna="g"
+
+#Damas pretas
+posicionarPeca cor=2 linha=1 coluna="b"
+
+posicionarPeca cor=2 linha=1 coluna="d"
+
+posicionarPeca cor=2 linha=1 coluna="f"
+
+posicionarPeca cor=2 linha=1 coluna="h"
+
+#Pedras comuns - Pretas
+posicionarPeca cor=2 linha=7 coluna="b"
+
+posicionarPeca cor=2 linha=7 coluna="d"
+
+posicionarPeca cor=2 linha=7 coluna="f"
+
+posicionarPeca cor=2 linha=7 coluna="h"
+
+#Damas
+expect "true" isDama linha=8 coluna="a"
+
+expect "true" isDama linha=8 coluna="c"
+
+expect "true" isDama linha=8 coluna="e"
+
+expect "true" isDama linha=8 coluna="g"
+
+expect "true" isDama linha=1 coluna="b"
+
+expect "true" isDama linha=1 coluna="d"
+
+expect "true" isDama linha=1 coluna="f"
+
+expect "true" isDama linha=1 coluna="h"
+
+#Nao-damas
+
+expect "false" isDama linha=2 coluna="a"
+
+expect "false" isDama linha=2 coluna="c"
+
+expect "false" isDama linha=2 coluna="e"
+
+expect "false" isDama linha=2 coluna="g"
+
+expect "false" isDama linha=7 coluna="b"
+
+expect "false" isDama linha=7 coluna="d"
+
+expect "false" isDama linha=7 coluna="f"
+
+expect "false" isDama linha=7 coluna="h"
+
+encerrarPartidaSemSalvar
+
+zerarJogo
+
+quit
+
+
+
+
+
+

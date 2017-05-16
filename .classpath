@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="entidades"/>
+	<classpathentry kind="src" path="Controlador"/>
+	<classpathentry kind="src" path="Execoes"/>
+	<classpathentry kind="src" path="Regras"/>
+	<classpathentry kind="src" path="Validacoes"/>
+	<classpathentry kind="src" path="Iniciar"/>
+	<classpathentry kind="src" path="Bibliotecas"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="Bibliotecas/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="Bibliotecas/easyaccept.jar"/>
+	<classpathentry kind="lib" path="Bibliotecas/xmlpull-1.1.3.1.jar"/>
+	<classpathentry kind="lib" path="Bibliotecas/xom-1.1.jar"/>
+	<classpathentry kind="lib" path="Bibliotecas/xstream-1.4.8.jar"/>
+	<classpathentry kind="lib" path="Bibliotecas/xstream-benchmark-1.4.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
