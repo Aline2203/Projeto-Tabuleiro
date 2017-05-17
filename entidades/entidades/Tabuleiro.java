@@ -1,5 +1,6 @@
 package entidades;
 
+
 import entidades.pecas.CasaBloqueada;
 import entidades.pecas.CasaValida;
 import entidades.pecas.FabricaPecas;
@@ -11,15 +12,25 @@ public class Tabuleiro {
 
 	private Peca[][] tabu;
 
-	public Tabuleiro(int tamanhoVetor) throws DamasException {
+	private String id;
+	
+	public Tabuleiro(String id,int tamanhoVetor) throws DamasException {
 		if (tamanhoVetor % 2 == 0 && tamanhoVetor > 5) {
 			tabu = new Peca[tamanhoVetor][tamanhoVetor];
+			this.id=id;
 			configurarTabuleiro();
 		} else {
-			throw new DamasException("Numero Invalido");
+			throw new DamasException("Tamanho de tabuleiro invalido");
 		}
 	}
-//aline
+	
+	public String getId(){ 
+		return id;
+	}
+	
+	public Tabuleiro() {
+	}
+	
 	public void imprimirTabuleiro() {
 
 		char coluna = 'A';
@@ -76,10 +87,10 @@ public class Tabuleiro {
 					for (int j = 0; j < tabu[i].length; j++) {
 
 						if (j % 2 == 1) {
-							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "P");
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "escura");
 						} else {
 
-							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "P");
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "escura");
 						}
 
 					}
@@ -87,9 +98,9 @@ public class Tabuleiro {
 				} else {
 					for (int j = 0; j < tabu[i].length; j++) {
 						if (j % 2 == 0) {
-							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "P");
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "escura");
 						} else {
-							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "P");
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "escura");
 						}
 					}
 				}
@@ -104,9 +115,9 @@ public class Tabuleiro {
 					for (int j = 0; j < tabu[i].length; j++) {
 
 						if (j % 2 == 1) {
-							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "B");
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "branca");
 						} else {
-							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "B");
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "branca");
 						}
 
 					}
@@ -114,9 +125,9 @@ public class Tabuleiro {
 				} else {
 					for (int j = 0; j < tabu[i].length; j++) {
 						if (j % 2 == 0) {
-							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "B");
+							tabu[i][j] = FabricaPecas.criarPeca("Pedra", "branca");
 						} else {
-							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "B");
+							tabu[i][j] = FabricaPecas.criarPeca("CasaBloqueada", "branca");
 						}
 					}
 				}
@@ -125,17 +136,36 @@ public class Tabuleiro {
 		}
 	}
 
-	
-
-	public void mudarPosicao(int posicaoColuna, int posicaoLinha, int posicaoFinalColuna, int posicaoFinalLinha) {
+	public void mudarPosicao(int posicaoColuna, char posicaoLinha, int posicaoFinalColuna, char posicaoFinalLinha) {
 		Peca peca = tabu[posicaoColuna][posicaoLinha];
 		tabu[posicaoColuna][posicaoLinha] = FabricaPecas.criarPeca("", "");
 		tabu[posicaoFinalColuna][posicaoFinalLinha] = peca;
 
 	}
+	
+	private int acharLetraCluna(String letra){
+		try {
+			int a = letra.charAt(0);
+			int cont = 0;
+			for(int i = 0;96+i<a-1;i++){
+				cont++;
+			}
+			
+			
+			
+//			risso 99665-2385
+			
+//			System.out.println("Letra Passada = "+letra+"|||| numero da letra = "+cont);
+			return cont;
+			
+		} catch (Exception e) {
+//			System.out.println("Erro Na converção - -" + e.getMessage());
+			return 0;
+		}
+	}
 
-	public Peca localizar(int posicaoColuna, int posicaoLinha) {
-		return tabu[posicaoColuna][posicaoLinha];
+	public Peca localizar(int posicaoLinha,String posicaoColuna){
+		return tabu[acharLetraCluna(posicaoColuna)][posicaoLinha-1];
 	}
 
 }

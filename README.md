@@ -1,3 +1,3 @@
 # Projeto-Tabuleiro
 
-CrianÃ§Ã£o de um jogo de Damas.
+Criação de um jogo de damas

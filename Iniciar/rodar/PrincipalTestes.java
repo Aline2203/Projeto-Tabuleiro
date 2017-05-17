@@ -12,19 +12,19 @@ public class PrincipalTestes {
 
 		List<String> arquivos = new ArrayList<String>();
 
-		arquivos.add("testes/CE01.txt");
-		arquivos.add("testes/CE02.txt");
-		arquivos.add("testes/CE03.txt");
-		arquivos.add("testes/CE04.txt");
-		arquivos.add("testes/CE05.txt");
-		
+//		arquivos.add("testes/CE01.txt");
+//		arquivos.add("testes/CE02.txt");
+//		arquivos.add("testes/CE03.txt");
+//		arquivos.add("testes/CE04.txt");
+//		arquivos.add("testes/CE05.txt");
+//		
 		arquivos.add("testes/US01.txt");
-		arquivos.add("testes/US02.txt");
-		arquivos.add("testes/US03.txt");
-		arquivos.add("testes/US04.txt");
-		arquivos.add("testes/US05.txt");
-		arquivos.add("testes/US06.txt");
-		arquivos.add("testes/US07.txt");
+//		arquivos.add("testes/US02.txt");
+//		arquivos.add("testes/US03.txt");
+//		arquivos.add("testes/US04.txt");
+//		arquivos.add("testes/US05.txt");
+//		arquivos.add("testes/US06.txt");
+//		arquivos.add("testes/US07.txt");
 		
 		
 		//

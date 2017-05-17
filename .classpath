@@ -7,6 +7,7 @@
 	<classpathentry kind="src" path="Validacoes"/>
 	<classpathentry kind="src" path="Iniciar"/>
 	<classpathentry kind="src" path="Bibliotecas"/>
+	<classpathentry kind="src" path="Percistencia"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="Bibliotecas/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="Bibliotecas/easyaccept.jar"/>
